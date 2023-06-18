@@ -10,7 +10,7 @@
             width: 100vw;
             height: 100vh;
             overflow: hidden;
-            background-color: #c8d6e5;
+            background-color: white;
         }
 
         h1 {
@@ -82,25 +82,8 @@
 
         .hom {
             position: relative;
-            top: -200px;
+            top: -150px;
             left: 1020px;
-        }
-/*
-        button{
-            position: relative;
-            width: 130px;
-            color: red;
-            margin: 10px;
-            top: 800px;
-        }*/
-
-        button {
-            position: relative;
-            width: 130px;
-            color: white;
-            top: 200px;
-            left: 500px;
-
         }
 
     </style>
@@ -125,9 +108,6 @@
     <img class="image" id="image6" src="https://media.tenor.com/HuT-8650uz0AAAAC/berjalan-walking.gif" alt="">
 </section>
 
-<button id="start" type="button" class="btn btn-primary">Start</button>
-<button id="stop" type="button" class="btn btn-danger">End</button>
-
 <section class="hom">
     <img class="home" src="https://media1.giphy.com/media/UPwElWTjo7Bf8SJNFm/giphy.gif?cid=6c09b95203877b758652e9535ee96a4cc829f12917b33f66&ep=v1_internal_gifs_gifId&rid=giphy.gif&ct=g">
 </section>
@@ -135,15 +115,20 @@
 <div id="lineBottom"></div>
 
 <script src="../assets/bootstrap-5.1.3-dist/bootstrap-5.1.3-dist/JQuery/jquery-3.6.1.min.js"></script>
-
 <script>
-    let BoxId= [$('#A'),$('#B'),$('#C'),$('#D'),$('#E'),$('#F'),$('#A'),$('#B'),$('#C'),$('#D'),$('#E'),$('#F')];
-
-    var text = ['F', 'E', 'D', 'C', 'B', 'A','F', 'E', 'D', 'C', 'B', 'A'];
-
+    const letters = ['A', 'B', 'C', 'D', 'E', 'F'];
     let count = 0;
-    let reverse = 0;
-    let timeRange;
+    setInterval(changeLetter, 1000);
+    function changeLetter() {
+        if (count === letters.length){
+            count = 0;
+        }
+        for (let i=0; i < letters.length; i++){
+            let index = i-count ;
+            $('h2').eq(i).text(letters[(index<0)?6+index:index]);
+        }
+        count++;
+    }
 
     $("#start").click(function () {
 
@@ -157,16 +142,6 @@
         clearInterval(timeId);
     });
 
-    function changeText() {
-        if (count == 20) {
-            count = 0;
-            reverse=0;
-        }
-        for (let i = 0; i < BoxId.length; i++) {
-            BoxId[i].css('text', text[count-i]);
-        }
-        count++;
-    }
 
 
 </script>
